@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import QuestionsSet from "./components/questionsSet";
+import QuestionsSet from "./components/questionsSet/questionsSet";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

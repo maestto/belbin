@@ -30,7 +30,7 @@ interface QuestionProps {
 const Question: React.FC<QuestionProps> = ({ questionID, questionText, updateTotalScore, allScoresArr }) => {
     const [questionScore, setQuestionScore] = React.useState<number>(0)
 
-    const calculateTotalScoreWithNewValue = (newValue: number) => {
+     const calculateTotalScoreWithNewValue = (newValue: number) => {
         const updatedScores = [...allScoresArr]
         updatedScores[questionID] = newValue
 
@@ -59,6 +59,7 @@ const Question: React.FC<QuestionProps> = ({ questionID, questionText, updateTot
             {questionText}
             <div>
                 <Slider
+                    data-testid="slider-testid"
                     size="small"
                     valueLabelDisplay="auto"
                     step={1}

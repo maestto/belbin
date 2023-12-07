@@ -1,5 +1,5 @@
 import React from 'react';
-import Question from "./question";
+import Question from "../question/question";
 
 const questionsData: string[] = [
     'Вопрос 1',
