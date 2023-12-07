@@ -1,29 +1,45 @@
-import React from 'react';
-import * as Slider from '@radix-ui/react-slider';
+import * as React from 'react';
+import Slider from '@mui/material/Slider';
 
-import './question.css'
+const sliderMarks = [
+    { value: 0, label: '0', },
+    { value: 1, label: '1', },
+    { value: 2, label: '2', },
+    { value: 3, label: '3', },
+    { value: 4, label: '4', },
+    { value: 5, label: '5', },
+    { value: 6, label: '6', },
+    { value: 7, label: '7', },
+    { value: 8, label: '8', },
+    { value: 9, label: '9', },
+    { value: 10, label: '10', },
+]
 
-const Question = ({ questionText }) => {
+export default function Question({ questionID, questionText, updateScore, totalScore }) {
+    const [questionScore, setQuestionScore] = React.useState(0)
+
+    const onSliderChange = (e, val) => {
+        if(totalScore < 10 || val < questionScore) {
+            setQuestionScore(val)
+            updateScore(questionID, val)
+        }
+    }
+
     return (
         <div>
-            <form className="Slider">
-                <p className="SliderQuestion">{questionText}</p>
-                <Slider.Root className="SliderRoot" defaultValue={[0]} max={100} step={10}>
-                    <Slider.Track className="SliderTrack">
-                        <Slider.Range className="SliderRange" />
-                    </Slider.Track>
-                    <Slider.Thumb className="SliderThumb" aria-label="Volume" />
-                </Slider.Root>
-                <div className="SliderScale">
-                    {
-                        Array.from({length: 10}, (_, i) => i + 1).map(i => (
-                            <span key={i}>{i}</span>
-                        ))
-                    }
-                </div>
-            </form>
+            {questionText}
+            <div>
+                <Slider
+                    size="small"
+                    valueLabelDisplay="auto"
+                    step={1}
+                    marks={sliderMarks}
+                    value={questionScore}
+                    onChange={onSliderChange}
+                    min={0}
+                    max={10}
+                />
+            </div>
         </div>
-    );
-};
-
-export default Question;
+    )
+}

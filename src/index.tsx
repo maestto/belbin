@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
 import './index.css';
-import Question from './components/question.jsx';
+import QuestionsSet from "./components/questionsSet";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,6 +9,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Question questionText={"Вопрос 1"}/>
+      <QuestionsSet/>
   </React.StrictMode>
 )
