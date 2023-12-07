@@ -8,25 +8,23 @@ const questionsData = [
 ]
 
 const QuestionsSet = () => {
-    const [scoresArr, setScoresArr] = React.useState([])
-    const [score, setScore] = React.useState(0)
+    const [allScoresArr, setAllScoresArr] = React.useState([])
+    const [totalScore, setTotalScore] = React.useState(0)
 
-    const updateScore = (questionID, questionScore) => {
-        const updatedScores = [...scoresArr]
+    const updateTotalScore = (questionID, questionScore) => {
+        const updatedScores = [...allScoresArr]
         updatedScores[questionID] = questionScore
-        setScoresArr(updatedScores)
+        setAllScoresArr(updatedScores)
 
-        let scoresSum = 0
-        updatedScores.map((value) => scoresSum += value)
-        setScore(scoresSum)
+        setTotalScore(updatedScores.reduce((sum, value) => sum + value, 0))
     }
 
     return (
         <div>
-            Очков {score}/10
+            Использовано {totalScore} из 10
             {
                 questionsData.map((value, index) =>
-                    <Question questionID={index} questionText={value} updateScore={updateScore} totalScore={score}/>
+                    <Question key={index} questionID={index} questionText={value} updateTotalScore={updateTotalScore} allScoresArr={allScoresArr}/>
                 )
             }
         </div>

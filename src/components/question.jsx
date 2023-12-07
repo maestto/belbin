@@ -15,14 +15,30 @@ const sliderMarks = [
     { value: 10, label: '10', },
 ]
 
-export default function Question({ questionID, questionText, updateScore, totalScore }) {
+export default function Question({ questionID, questionText, updateTotalScore, allScoresArr }) {
     const [questionScore, setQuestionScore] = React.useState(0)
 
-    const onSliderChange = (e, val) => {
-        if(totalScore < 10 || val < questionScore) {
-            setQuestionScore(val)
-            updateScore(questionID, val)
+    const calculateTotalScoreWithNewValue = (newValue) => {
+        const updatedScores = [...allScoresArr]
+        updatedScores[questionID] = newValue
+
+        return updatedScores.reduce((sum, newValue) => sum + newValue, 0)
+    }
+
+    const onSliderChange = (_, newValue) => {
+        const totalScoreWithNewValue = calculateTotalScoreWithNewValue(newValue)
+
+        if (totalScoreWithNewValue > 10) {
+            for (let i = newValue; i >= 0; i--) {
+                if (calculateTotalScoreWithNewValue(i) <= 10) {
+                    newValue = i;
+                    break;
+                }
+            }
         }
+
+        setQuestionScore(newValue)
+        updateTotalScore(questionID, newValue)
     }
 
     return (
