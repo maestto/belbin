@@ -1,13 +1,11 @@
 import React from 'react';
 import Question from "../question/question";
 
-const questionsData: string[] = [
-    'Вопрос 1',
-    'Вопрос 2',
-    'Вопрос 3'
-]
+interface QuestionsSetProps {
+    questionsArray: string[]
+}
 
-const QuestionsSet: React.FC = () => {
+const QuestionsSet: React.FC<QuestionsSetProps> = ({questionsArray}) => {
     const [allScoresArr, setAllScoresArr] = React.useState<number[]>([])
     const [totalScore, setTotalScore] = React.useState<number>(0)
 
@@ -16,14 +14,14 @@ const QuestionsSet: React.FC = () => {
         updatedScores[questionID] = questionScore
         setAllScoresArr(updatedScores)
 
-        setTotalScore(updatedScores.reduce((sum, value) => sum + value, 0))
+        setTotalScore(updatedScores.reduce((previousValue, currentValue) => previousValue + currentValue, 0))
     }
 
     return (
         <div>
             Использовано {totalScore} из 10
             {
-                questionsData.map((value, index) =>
+                questionsArray.map((value, index) =>
                     <Question key={index} questionID={index} questionText={value} updateTotalScore={updateTotalScore} allScoresArr={allScoresArr}/>
                 )
             }
