@@ -6,7 +6,7 @@ import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import QuestionsSet from "./components/questionsSet/questionsSet";
+import QuestionSet from "./components/questionSet";
 
 const steps = [
     {
@@ -53,7 +53,7 @@ const QuestionsPage = () => {
                     <Step key={step.label}>
                         <StepLabel>{step.label}</StepLabel>
                         <StepContent>
-                            <QuestionsSet questionsArray={step.questions}/>
+                            <QuestionSet id={index} questionsArray={step.questions}/>
                             <Box sx={{ mb: 2 }}>
                                 <div>
                                     <Button
