@@ -22,14 +22,15 @@ const sliderMarks: SliderMark[] = [
 ]
 
 interface QuestionProps {
+    setID: number
     id: number
     children: string
     updateQuestionsSetState: (questionID: number, newValue: number) => void
 }
 
-const Question: React.FC<QuestionProps> = ({ id, children, updateQuestionsSetState }) => {
+const Question: React.FC<QuestionProps> = ({ setID, id, children, updateQuestionsSetState }) => {
     // @ts-ignore
-    const score = useSelector(state => state.questionScores[id]) || 0
+    const score = useSelector(state => state.questionSet[setID].questionScores[id]) || 0
 
     const updateScore = (_: Event, value: number | number[]) => updateQuestionsSetState(id, value as number)
 

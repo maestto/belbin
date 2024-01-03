@@ -11,10 +11,10 @@ interface QuestionsSetProps {
 const QuestionSet: React.FC<QuestionsSetProps> = ({ id, questionsArray }) => {
     const dispatch = useDispatch()
     // @ts-ignore
-    const totalScore = useSelector(state => state.totalScore) || 0
+    const totalScore = useSelector(state => state.questionSet[id].totalScore) || 0
 
     const updateQuestionsSetState = (questionID: number, newValue: number) => {
-        dispatch(updateQuestionScore(questionID, newValue))
+        dispatch(updateQuestionScore(id, questionID, newValue))
     }
 
     return (
@@ -23,7 +23,7 @@ const QuestionSet: React.FC<QuestionsSetProps> = ({ id, questionsArray }) => {
             Использовано {totalScore} из 10
             {
                 questionsArray.map((questionText, index) =>
-                    <Question key={index} id={index} updateQuestionsSetState={updateQuestionsSetState}>{questionText}</Question>
+                    <Question key={index} setID={id} id={index} updateQuestionsSetState={updateQuestionsSetState}>{questionText}</Question>
                 )
             }
         </div>

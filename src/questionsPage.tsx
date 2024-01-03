@@ -40,11 +40,11 @@ const steps = [
 ];
 
 const QuestionsPage = () => {
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = React.useState(0)
 
-    const handleNextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    const handleBackStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    const handleResetStepper = () => setActiveStep(0);
+    const handleNextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
+    const handleBackStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
+    const handleResetStepper = () => setActiveStep(0)
 
     return (
         <Box sx={{ maxWidth: 1200 }}>
